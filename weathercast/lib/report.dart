@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'location.dart';
 
 class Report extends StatefulWidget {
   const Report({super.key});
@@ -9,6 +10,11 @@ class Report extends StatefulWidget {
 
 class _ReportState extends State<Report> {
   @override
+  void initState() {
+    getCurrentLocation().then((value) => print(value));
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
