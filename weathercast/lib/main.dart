@@ -11,6 +11,19 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          textTheme: const TextTheme(
+              bodyLarge: TextStyle(fontSize: 20, color: Colors.white),
+              headlineLarge: TextStyle(
+                fontSize: 72,
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
+              ),
+              displayMedium: TextStyle(
+                fontSize: 18,
+                fontStyle: FontStyle.italic,
+                color: Colors.yellow,
+              ))),
       home: Scaffold(
         body: Container(
           constraints: const BoxConstraints.expand(),
