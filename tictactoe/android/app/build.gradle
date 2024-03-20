@@ -2,7 +2,6 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
-    id 'com.google.gms.google-services'
 }
 
 def localProperties = new Properties()
@@ -24,8 +23,8 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.tictactoe"
-    compileSdkVersion 33 // flutter.compileSdkVersion
+    namespace "com.is66110700.tictactoe"
+    compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -46,11 +45,10 @@ android {
         applicationId "com.is66110700.tictactoe"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 19 // flutter.minSdkVersion
+        minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        multiDexEnabled true
     }
 
     buildTypes {
@@ -66,8 +64,4 @@ flutter {
     source '../..'
 }
 
-dependencies {
-    implementation platform('com.google.firebase:firebase-bom:32.7.3')
-    implementation "androidx.multidex:multidex:2.0.1"
-}
-
+dependencies {}
