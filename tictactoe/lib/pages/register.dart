@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -85,7 +86,36 @@ class _RegisterState extends State<Register> {
               const SizedBox(
                 height: 24,
               ),
-              FilledButton(onPressed: () {}, child: const Text('Register')),
+              FilledButton(
+                  onPressed: () async {
+                    if (_password == _passwordCheck) {
+                      try {
+                        FirebaseAuth.instance.createUserWithEmailAndPassword(
+                            email: '$_playername@gmail.com',
+                            password: _password);
+                        gotoChallenge();
+                      } on FirebaseAuthException catch (e) {
+                        if (context.mounted) return;
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(e.code),
+                          duration: const Duration(seconds: 10),
+                        ));
+                      } catch (e) {
+                        if (context.mounted) return;
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(e.toString()),
+                          duration: const Duration(seconds: 10),
+                        ));
+                      }
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text(
+                            'Password and Retype password are not identical.'),
+                        duration: Duration(seconds: 10),
+                      ));
+                    }
+                  },
+                  child: const Text('Register')),
             ],
           ),
         ),
